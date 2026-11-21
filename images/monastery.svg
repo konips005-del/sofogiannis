@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" fill="#8d9590">
+  <!-- Διακοσμητική σιλουέτα μονής σε βράχο, όπως το φόντο της επαγγελματικής κάρτας -->
+  <path d="M70 420 C 88 330, 96 280, 132 236 C 150 214, 170 206, 196 204 L 430 200 C 462 202, 486 214, 500 240 C 520 278, 532 340, 546 420 Z" opacity=".55"/>
+  <path d="M132 236 C 150 250, 160 300, 150 420 L 118 420 C 120 330, 122 280, 132 236 Z" opacity=".35"/>
+  <path d="M470 220 C 486 260, 498 320, 492 420 L 520 420 C 516 340, 506 270, 470 220 Z" opacity=".3"/>
+  <g opacity=".8">
+    <rect x="178" y="128" width="236" height="78"/>
+    <rect x="250" y="96" width="112" height="34"/>
+    <path d="M244 98 L306 70 L368 98 Z"/>
+    <path d="M172 130 L296 108 L420 130 Z"/>
+    <rect x="390" y="64" width="40" height="142"/>
+    <path d="M384 66 L410 30 L436 66 Z"/>
+    <rect x="404" y="12" width="2" height="20"/>
+    <rect x="398" y="18" width="14" height="2"/>
+    <rect x="150" y="150" width="34" height="56"/>
+    <path d="M146 152 L167 136 L188 152 Z"/>
+  </g>
+  <g fill="#f4f5f2" opacity=".85">
+    <rect x="196" y="146" width="10" height="16" rx="5"/><rect x="222" y="146" width="10" height="16" rx="5"/>
+    <rect x="248" y="146" width="10" height="16" rx="5"/><rect x="274" y="146" width="10" height="16" rx="5"/>
+    <rect x="300" y="146" width="10" height="16" rx="5"/><rect x="326" y="146" width="10" height="16" rx="5"/>
+    <rect x="352" y="146" width="10" height="16" rx="5"/>
+    <rect x="196" y="176" width="10" height="14"/><rect x="236" y="176" width="10" height="14"/>
+    <rect x="276" y="176" width="10" height="14"/><rect x="316" y="176" width="10" height="14"/>
+    <rect x="356" y="176" width="10" height="14"/>
+    <rect x="404" y="90" width="12" height="20" rx="6"/><rect x="404" y="130" width="12" height="18" rx="6"/>
+    <rect x="270" y="108" width="8" height="12" rx="4"/><rect x="302" y="108" width="8" height="12" rx="4"/><rect x="334" y="108" width="8" height="12" rx="4"/>
+  </g>
+  <path d="M0 420 C 40 400, 60 392, 90 396 C 60 410, 40 416, 0 420 Z M600 420 C 570 404, 556 398, 528 400 C 556 410, 574 416, 600 420 Z" opacity=".35"/>
+</svg>
