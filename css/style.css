@@ -474,3 +474,4 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
 @media (max-width: 640px) {
   .contact-card.wide strong { font-size: 15.5px; overflow-wrap: anywhere; word-break: normal; }
 }
+.row-owner .since { margin-left: auto; font-style: italic; font-family: var(--serif); color: var(--purple); font-size: 16px; }
