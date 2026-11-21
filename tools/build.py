@@ -37,6 +37,7 @@ MAPS_Q = "Φορμίωνος 233, Βύρωνας"
 MAPS_LINK = "https://www.google.com/maps/search/?api=1&query=" + MAPS_Q.replace(" ", "+")
 MAPS_EMBED = "https://www.google.com/maps?q=" + MAPS_Q.replace(" ", "+") + "&output=embed"
 
+LOGO_V = hashlib.md5(open(os.path.join(ROOT, "images/logo-emblem.svg"), "rb").read()).hexdigest()[:8]
 ASSET_V = hashlib.md5(b"".join(open(os.path.join(ROOT, f), "rb").read()
                               for f in ("css/style.css", "js/main.js"))).hexdigest()[:8]
 
@@ -219,20 +220,20 @@ def head(path, title, desc, ld):
   <meta property="og:title" content="{esc(title)}">
   <meta property="og:description" content="{esc(desc)}">
   <meta property="og:url" content="{url(path)}">
-  <meta property="og:image" content="{url('/og-image.png')}">
+  <meta property="og:image" content="{url('/og-image.png')}?v={LOGO_V}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Γραφείο Τελετών Σοφογιάννης · Βύρωνας">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{esc(title)}">
   <meta name="twitter:description" content="{esc(desc)}">
-  <meta name="twitter:image" content="{url('/og-image.png')}">
+  <meta name="twitter:image" content="{url('/og-image.png')}?v={LOGO_V}">
   <meta name="format-detection" content="telephone=no">
-  <link rel="icon" href="/favicon.ico" sizes="48x48">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
+  <link rel="icon" href="/favicon.ico?v={LOGO_V}" sizes="48x48">
+  <link rel="icon" href="/favicon.svg?v={LOGO_V}" type="image/svg+xml">
+  <link rel="icon" href="/favicon-96.png?v={LOGO_V}" sizes="96x96" type="image/png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v={LOGO_V}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -246,7 +247,7 @@ def head(path, title, desc, ld):
 
 def brand(light=False):
     return f"""<a class="brand{' light' if light else ''}" href="/" aria-label="{esc(BIZ['name'])}, αρχική σελίδα">
-        <img class="brand-mark" src="/images/logo-emblem.svg" alt="" width="58" height="58">
+        <img class="brand-mark" src="/images/logo-emblem.svg?v={LOGO_V}" alt="" width="58" height="58">
         <span class="brand-text"><span class="brand-name">Σοφογιάννης</span><span class="brand-sub">Γραφείο Τελετών · Βύρωνας</span></span>
       </a>"""
 
@@ -385,7 +386,7 @@ def cta_band(title="Είμαστε εδώ, όποια ώρα κι αν μας χ
     return f"""<section class="cta-wrap">
   <div class="wrap">
     <div class="cta-band">
-      <img class="cta-emblem" src="/images/logo-emblem.svg" alt="" width="120" height="120">
+      <img class="cta-emblem" src="/images/logo-emblem.svg?v={LOGO_V}" alt="" width="120" height="120">
       <div>
         <h2>{title}</h2>
         <p>{text}</p>
@@ -493,7 +494,7 @@ home_body = f"""<section class="hero">
           </div>
         </div>
         <div class="hero-seal">
-          <img src="/images/logo-emblem.svg" alt="Το έμβλημα του Γραφείου Τελετών Σοφογιάννης" width="340" height="340" fetchpriority="high">
+          <img src="/images/logo-emblem.svg?v={LOGO_V}" alt="Το έμβλημα του Γραφείου Τελετών Σοφογιάννης" width="340" height="340" fetchpriority="high">
         </div>
       </div>
     </div>
@@ -523,7 +524,7 @@ home_body = f"""<section class="hero">
   <div class="wrap split">
     <figure class="portrait">
       <div class="portrait-frame"><img src="/images/nikolaos-sofogiannis.jpg" alt="Ο Νικόλαος Ι. Σοφογιάννης, υπεύθυνος του Γραφείου Τελετών Σοφογιάννης στον Βύρωνα" width="640" height="643" loading="lazy" decoding="async"></div>
-      <figcaption><img src="/images/logo-emblem.svg" alt="" width="56" height="56"><span><strong>{BIZ['owner']}</strong><small>Υπεύθυνος γραφείου · από το 2003</small></span></figcaption>
+      <figcaption><img src="/images/logo-emblem.svg?v={LOGO_V}" alt="" width="56" height="56"><span><strong>{BIZ['owner']}</strong><small>Υπεύθυνος γραφείου · από το 2003</small></span></figcaption>
     </figure>
     <div>
       {sec_title("Λίγα λόγια για εμάς")}
@@ -586,7 +587,7 @@ about_body = page_hero([("Αρχική", "/"), ("Το Γραφείο", "/to-graf
   <div class="wrap split">
     <figure class="portrait">
       <div class="portrait-frame"><img src="/images/grafeio-vyronas.jpg" alt="Η πρόσοψη του Γραφείου Τελετών Σοφογιάννης στη Φορμίωνος 233, Βύρωνας" width="977" height="1200" loading="lazy" decoding="async" style="object-position:center 100%"></div>
-      <figcaption><img src="/images/logo-emblem.svg" alt="" width="56" height="56"><span><strong>Το γραφείο μας</strong><small>{BIZ['street']} · {BIZ['city']}</small></span></figcaption>
+      <figcaption><img src="/images/logo-emblem.svg?v={LOGO_V}" alt="" width="56" height="56"><span><strong>Το γραφείο μας</strong><small>{BIZ['street']} · {BIZ['city']}</small></span></figcaption>
     </figure>
     <div>
       {sec_title("Η ιστορία μας")}
@@ -968,7 +969,7 @@ PAGES.append(("/epikoinonia/", "0.9"))
 
 # ================================================================= 404
 nf_body = f"""<section class="notfound"><div class="wrap">
-  <img src="/images/logo-emblem.svg" alt="" width="120" height="120">
+  <img src="/images/logo-emblem.svg?v={LOGO_V}" alt="" width="120" height="120">
   <h1>Η σελίδα δεν βρέθηκε</h1>
   <p class="lead">Η σελίδα που αναζητάτε δεν υπάρχει. Αν χρειάζεστε βοήθεια, καλέστε μας οποιαδήποτε ώρα.</p>
   <div class="hero-actions">
