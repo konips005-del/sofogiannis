@@ -534,3 +534,7 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
   .hero-shot { display: none; }
   .hero-bg img { filter: none; transform: none; object-position: center 20%; }
 }
+
+/* φωτογραφίες μέσα στο κείμενο υπηρεσιών */
+.prose .photo { margin: 30px 0; background: var(--green); padding: 10px; border-radius: 4px; box-shadow: 0 24px 50px -28px rgba(10, 30, 15, .6); }
+.prose .photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border: 6px solid; border-color: #8a64bd #3f2166 #331a55 #7853ab; }
