@@ -582,3 +582,7 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
 .nav { gap: 2px; }
 .nav .dd > button svg { flex: none; }
 @media (max-width: 640px) { .coffin figcaption { justify-content: center; } .coffin figcaption > span:first-child { display: none; } }
+.coffin-img { position: relative; }
+.coffin-img img.alt { position: absolute; inset: 0; opacity: 0; transition: opacity .4s; }
+.coffin.has-alt:hover .coffin-img img.alt { opacity: 1; }
+.coffin.has-alt:hover .coffin-img img:first-child { transform: none; }

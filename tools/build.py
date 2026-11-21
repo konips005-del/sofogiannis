@@ -636,12 +636,17 @@ build_page("/to-grafeio/", "Το Γραφείο · Γραφείο Τελετών
 PAGES.append(("/to-grafeio/", "0.8"))
 
 # ================================================================= ΕΚΘΕΣΙΑΚΟΣ ΧΩΡΟΣ
-# Φέρετρα ns-01 … ns-25 (από το site Τογρίδη ΛΤ6–ΛΤ30). Σειρά = αρίθμηση ΝΣ1, ΝΣ2, …
-COFFINS = sorted(f for f in os.listdir(os.path.join(ROOT, "images", "feretra")) if f.startswith("ns-"))
-def coffin_card(n, f):
+# Φέρετρα ns-01 … ns-29: Τογρίδης ΛΤ1–ΛΤ6, ΛΤ30–ΛΤ52 (ns-XX-b.jpg = εικόνα λεπτομέρειας για hover)
+COFFINS = sorted(f for f in os.listdir(os.path.join(ROOT, "images", "feretra")) if f.startswith("ns-") and not f.endswith("-b.jpg"))
+def fimg(f):
     v = hashlib.md5(open(os.path.join(ROOT, "images", "feretra", f), "rb").read()).hexdigest()[:8]
-    return f"""<figure class="coffin">
-        <div class="coffin-img"><img src="/images/feretra/{f}?v={v}" alt="Φέρετρο ΝΣ{n}" width="800" height="600" loading="lazy" decoding="async"></div>
+    return f"/images/feretra/{f}?v={v}"
+def coffin_card(n, f):
+    b = f.replace(".jpg", "-b.jpg")
+    alt = (f'<img class="alt" src="{fimg(b)}" alt="" width="800" height="600" loading="lazy" decoding="async">'
+           if os.path.exists(os.path.join(ROOT, "images", "feretra", b)) else "")
+    return f"""<figure class="coffin{' has-alt' if alt else ''}">
+        <div class="coffin-img"><img src="{fimg(f)}" alt="Φέρετρο ΝΣ{n}" width="800" height="600" loading="lazy" decoding="async">{alt}</div>
         <figcaption><span>Φέρετρο</span><span class="ns-code"><img src="/images/logo-emblem.svg?v={LOGO_V}" alt="" width="26" height="26">ΝΣ{n}</span></figcaption>
       </figure>"""
 showroom_body = page_hero([("Αρχική", "/"), ("Εκθεσιακός Χώρος", "/ekthesiakos-xoros/")],
