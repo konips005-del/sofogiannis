@@ -675,7 +675,7 @@ def photo(src, alt, w, h, pos="center"):
 def carousel(items, label):
     """Slider φωτογραφιών με βελάκια (scroll-snap, χωρίς βιβλιοθήκες)."""
     slides = "".join(
-        f'<figure class="slide"><img src="/images/{src}" alt="{esc(alt)}" loading="lazy" decoding="async"></figure>'
+        f'<figure class="slide"><img src="/images/{src}?v=2" alt="{esc(alt)}" loading="lazy" decoding="async"></figure>'
         for src, alt in items)
     return f"""<div class="carousel" role="region" aria-roledescription="carousel" aria-label="{esc(label)}">
   <div class="car-track" tabindex="0">{slides}</div>
