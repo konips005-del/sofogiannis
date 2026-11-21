@@ -476,8 +476,9 @@ HOME_FAQ = [
 ]
 
 home_body = f"""<section class="hero">
-  <div class="hero-bg"><img src="/images/prosopsi.jpg" alt="Η πρόσοψη του Γραφείου Τελετών Σοφογιάννης, Φορμίωνος 233, Βύρωνας" width="1200" height="1600" fetchpriority="high"></div>
-  <div class="wrap">
+  <div class="hero-bg"><img src="/images/prosopsi-2.jpg" alt="" width="765" height="1020" fetchpriority="high"></div>
+  <div class="wrap hero-grid">
+    <figure class="hero-shot"><img src="/images/prosopsi-2.jpg" alt="Η πρόσοψη του Γραφείου Τελετών Σοφογιάννης, Φορμίωνος 233, Βύρωνας" width="765" height="1020"></figure>
     <div class="bevel">
       <div class="panel hero-panel">
         <div class="hero-text">

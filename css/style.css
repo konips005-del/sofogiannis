@@ -521,3 +521,16 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
 }
 .hero-bg img { object-position: center 12%; }
 @media (max-width: 640px) { .row-owner .since { display: none; } .hero-bg img { object-position: center 8%; } }
+.hero-bg img { object-position: center 20%; }
+/* hero v3: θολή φωτογραφία στο φόντο + ολόκληρη η πρόσοψη δεξιά */
+.hero-bg img { object-position: center 40%; filter: blur(16px) saturate(1.1); transform: scale(1.12); }
+.hero::before { background: linear-gradient(90deg, rgba(23, 63, 39, .9) 0%, rgba(23, 63, 39, .72) 50%, rgba(54, 25, 90, .55) 100%); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 1fr); gap: clamp(30px, 5vw, 70px); align-items: center; }
+.hero-grid > .bevel { grid-column: 1; grid-row: 1; }
+.hero-shot { grid-column: 2; grid-row: 1; margin: 0; justify-self: center; width: min(100%, 420px); background: #fff; padding: 10px 10px 10px; border-radius: 4px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .55); transform: rotate(1.5deg); }
+.hero-shot img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-shot { display: none; }
+  .hero-bg img { filter: none; transform: none; object-position: center 20%; }
+}
