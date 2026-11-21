@@ -672,6 +672,28 @@ def photo(src, alt, w, h, pos="center"):
     return (f'<figure class="photo"><img src="/images/{src}" alt="{esc(alt)}" width="{w}" height="{h}" '
             f'loading="lazy" decoding="async" style="object-position:{pos}"></figure>')
 
+def carousel(items, label):
+    """Slider φωτογραφιών με βελάκια (scroll-snap, χωρίς βιβλιοθήκες)."""
+    slides = "".join(
+        f'<figure class="slide"><img src="/images/{src}" alt="{esc(alt)}" loading="lazy" decoding="async"></figure>'
+        for src, alt in items)
+    return f"""<div class="carousel" role="region" aria-roledescription="carousel" aria-label="{esc(label)}">
+  <div class="car-track" tabindex="0">{slides}</div>
+  <button class="car-btn prev" type="button" aria-label="Προηγούμενη φωτογραφία"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="car-btn next" type="button" aria-label="Επόμενη φωτογραφία"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="car-dots" aria-hidden="true"></div>
+</div>"""
+
+STEFANIA = [
+    ("stefani-1.jpg", "Στεφάνι με λευκά τριαντάφυλλα, λίλιουμ και πράσινο φύλλωμα"),
+    ("stefani-2.jpg", "Στρογγυλό στεφάνι από λευκά χρυσάνθεμα και τριαντάφυλλα"),
+    ("stefani-3.jpg", "Δύο στρογγυλά στεφάνια με λευκά τριαντάφυλλα"),
+    ("stefani-4.jpg", "Στεφάνι με λευκά τριαντάφυλλα και κορδέλα συλλυπητηρίων"),
+    ("stefani-5.jpg", "Στεφάνι σε σχήμα καρδιάς από λευκά τριαντάφυλλα"),
+    ("stefani-6.jpg", "Ανθοσύνθεση με λευκά τριαντάφυλλα πάνω στο φέρετρο"),
+    ("stefani-7.jpg", "Στεφάνι καρδιά με λευκά τριαντάφυλλα και γυψοφίλη σε ναό"),
+]
+
 def note(html):
     return f'<div class="note">{I["info"]}<p>{html}</p></div>'
 
@@ -757,6 +779,9 @@ SVC_CONTENT["anthostolismos"] = {
     ("heart", "Στεφάνια", "Στεφάνια σε διάφορα μεγέθη και χρώματα, με κορδέλα και προσωπική αφιέρωση."),
     ("candle", "Μνημόσυνα", "Ανθοστολισμός για μνημόσυνα, καθώς και λουλούδια για τον τάφο."),
 ])}
+<h2>Από τη δουλειά μας</h2>
+<p>Μερικά από τα στεφάνια και τους στολισμούς που έχουμε επιμεληθεί.</p>
+{carousel(STEFANIA, "Φωτογραφίες από στεφάνια και ανθοστολισμούς")}
 <h2>Στεφάνια για συγγενείς, φίλους και συναδέλφους</h2>
 <p>Πολλοί θέλουν να στείλουν στεφάνι αλλά δεν γνωρίζουν σε ποιον να απευθυνθούν. Μπορούν να επικοινωνήσουν απευθείας μαζί μας: κανονίζουμε το στεφάνι με την αφιέρωση που επιθυμούν και φροντίζουμε να βρίσκεται στον ναό εγκαίρως.</p>
 {note(f"Για στεφάνι σε κηδεία που οργανώνουμε εμείς, καλέστε μας στο {BIZ['phone']} με το όνομα του εκλιπόντος και την αφιέρωση που θέλετε να γραφτεί στην κορδέλα.")}

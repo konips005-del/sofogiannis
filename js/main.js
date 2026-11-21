@@ -62,6 +62,37 @@
     });
   });
 
+  // Carousel φωτογραφιών με βελάκια
+  document.querySelectorAll('.carousel').forEach(function (car) {
+    var track = car.querySelector('.car-track');
+    var slides = track.querySelectorAll('.slide');
+    var prev = car.querySelector('.prev'), next = car.querySelector('.next');
+    var dotsBox = car.querySelector('.car-dots');
+    var step = function () { return slides[0].getBoundingClientRect().width + 14; };
+    var pages = function () { return Math.max(1, Math.round((track.scrollWidth - track.clientWidth) / step()) + 1); };
+    var drawDots = function () {
+      dotsBox.innerHTML = '';
+      for (var i = 0; i < pages(); i++) dotsBox.appendChild(document.createElement('span'));
+    };
+    var update = function () {
+      var max = track.scrollWidth - track.clientWidth - 2;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max;
+      var idx = Math.round(track.scrollLeft / step());
+      Array.prototype.forEach.call(dotsBox.children, function (d, i) { d.classList.toggle('on', i === idx); });
+    };
+    var go = function (dir) { track.scrollBy({ left: dir * step(), behavior: 'smooth' }); setTimeout(update, 60); setTimeout(update, 450); };
+    prev.addEventListener('click', function () { go(-1); });
+    next.addEventListener('click', function () { go(1); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); }
+    });
+    var t; track.addEventListener('scroll', function () { update(); clearTimeout(t); t = setTimeout(update, 150); }, { passive: true });
+    window.addEventListener('resize', function () { drawDots(); update(); });
+    drawDots(); update();
+  });
+
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 })();
