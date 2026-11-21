@@ -155,7 +155,7 @@ def business_ld():
         "alternateName": ["Γραφείο Τελετών Σοφογιάννης", "Σοφογιάννης Γραφείο Τελετών", "Γραφείο Τελετών Βύρωνας Σοφογιάννης", "Sofogiannis Funeral Home"],
         "description": "Γραφείο τελετών στον Βύρωνα από το 2003, Φορμίωνος 233. Κηδείες, αποτεφρώσεις, μνημόσυνα, ανθοστολισμός, μεταφορά σορού και διεκπεραίωση γραφειοκρατικών διαδικασιών, 24 ώρες το 24ωρο.",
         "url": url("/"),
-        "image": url("/og-image.png"),
+        "image": [url("/og-image.png"), url("/images/nikolaos-sofogiannis.jpg")],
         "logo": url("/logo.png"),
         "telephone": [BIZ["phone_tel"], BIZ["phone2_tel"], BIZ["mobile_tel"]],
         "faxNumber": "+302107600908",
@@ -521,13 +521,13 @@ home_body = f"""<section class="hero">
 
 <section class="section alt">
   <div class="wrap split">
-    <div class="quote-card">
-      <img src="/images/logo-emblem.svg" alt="" width="96" height="96">
-      <blockquote>«Κάθε οικογένεια που μας εμπιστεύεται τον αποχαιρετισμό ενός αγαπημένου της προσώπου αξίζει την ίδια φροντίδα που θα θέλαμε κι εμείς για τους δικούς μας ανθρώπους.»</blockquote>
-      <p class="sig">{BIZ['owner']}</p>
-    </div>
+    <figure class="portrait">
+      <div class="portrait-frame"><img src="/images/nikolaos-sofogiannis.jpg" alt="Ο Νικόλαος Ι. Σοφογιάννης, υπεύθυνος του Γραφείου Τελετών Σοφογιάννης στον Βύρωνα" width="640" height="643" loading="lazy" decoding="async"></div>
+      <figcaption><img src="/images/logo-emblem.svg" alt="" width="56" height="56"><span><strong>{BIZ['owner']}</strong><small>Υπεύθυνος γραφείου · από το 2003</small></span></figcaption>
+    </figure>
     <div>
       {sec_title("Λίγα λόγια για εμάς")}
+      <p class="quote">«Κάθε οικογένεια που μας εμπιστεύεται τον αποχαιρετισμό ενός αγαπημένου της προσώπου αξίζει την ίδια φροντίδα που θα θέλαμε κι εμείς για τους δικούς μας ανθρώπους.»</p>
       <p>Ο Νικόλαος Σοφογιάννης ξεκίνησε το 2003 και έχτισε το γραφείο του από το μηδέν, με προσωπική δουλειά και την εμπιστοσύνη των οικογενειών που εξυπηρέτησε. Σήμερα, {YEARS} χρόνια μετά, στη Φορμίωνος 233 στον Βύρωνα, αναλαμβάνει ο ίδιος κάθε τελετή, από την πρώτη επικοινωνία μέχρι το τελευταίο αντίο. Γνωρίζουμε ότι καμία οικογένεια δεν είναι ίδια με την άλλη, γι’ αυτό ακούμε, προτείνουμε και σεβόμαστε κάθε επιθυμία.</p>
       {check_list(["Προσωπική επικοινωνία με τον υπεύθυνο, όποια ώρα κι αν καλέσετε", "Σαφής ενημέρωση για το κόστος από την αρχή", "Διακριτικότητα σε κάθε στάδιο της διαδικασίας"])}
       <a class="btn btn-ghost" href="/to-grafeio/">Γνωρίστε μας {I['arrow']}</a>

@@ -475,3 +475,16 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
   .contact-card.wide strong { font-size: 15.5px; overflow-wrap: anywhere; word-break: normal; }
 }
 .row-owner .since { margin-left: auto; font-style: italic; font-family: var(--serif); color: var(--purple); font-size: 16px; }
+
+/* πορτρέτο υπευθύνου (αρχική) */
+.portrait { margin: 0; position: relative; max-width: 520px; justify-self: center; width: 100%; }
+.portrait-frame { background: var(--green); padding: clamp(12px, 1.6vw, 18px); border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(10, 30, 15, .6); }
+.portrait-frame img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 30%; border: 10px solid; border-color: #8a64bd #3f2166 #331a55 #7853ab; }
+.portrait figcaption {
+  position: relative; display: flex; align-items: center; gap: 14px; margin: -34px 24px 0; padding: 14px 18px; background: #fff;
+  border-radius: 12px; box-shadow: var(--shadow); border-left: 4px solid var(--purple);
+}
+.portrait figcaption img { width: 52px; height: 52px; flex: none; }
+.portrait figcaption strong { display: block; font-family: var(--serif); font-size: 21px; color: var(--green-d); line-height: 1.2; }
+.portrait figcaption small { display: block; color: var(--purple); font-weight: 600; font-size: 13.5px; }
+.quote { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 2vw, 23px); line-height: 1.5; color: var(--purple-d); border-left: 3px solid var(--green); padding-left: 18px; margin: 6px 0 20px; }
