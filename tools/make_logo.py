@@ -16,8 +16,9 @@ from fontTools.ttLib import TTFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ITALIC, REGULAR = TTFont(sys.argv[1]), TTFont(sys.argv[2])
+BOLD = TTFont(sys.argv[3]) if len(sys.argv) > 3 else REGULAR
 
-PURPLE, PURPLE_D, GREEN, GREEN_L, WHITE = "#5e3a8f", "#4e2a78", "#2f7d46", "#7cbf8c", "#ffffff"
+PURPLE, PURPLE_D, GREEN, GREEN_L, WHITE = "#7347a5", "#4a2a72", "#2f7d46", "#7cbf8c", "#ffffff"
 
 
 def glyph_d(font, ch, size, tx, ty, rot=0.0, anchor=0.5):
@@ -89,42 +90,54 @@ def leaves(cx, cy, n=6, r=44, fill=GREEN_L, op=0.55):
     return "".join(out)
 
 
-DISC_BG = "#4d574b"
+DISC_BG = "#4f8f63"
 
 def flower(cx, cy, r):
-    """Λευκό λουλούδι (γαρδένια) σε σκούρο φόντο, όπως στο πραγματικό λογότυπο."""
-    defs = (f'<defs><clipPath id="disc"><circle cx="{cx}" cy="{cy}" r="{r}"/></clipPath>'
-            '<radialGradient id="pet" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#ffffff"/>'
-            '<stop offset=".55" stop-color="#e4e7e0"/><stop offset="1" stop-color="#a9b1a5"/></radialGradient>'
-            '<radialGradient id="pet2" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#f3f4ef"/>'
-            '<stop offset="1" stop-color="#8f988b"/></radialGradient></defs>')
-    petal = "M0 0 C 6 -20, 30 -32, 50 -18 C 60 -10, 60 6, 52 16 C 44 26, 26 28, 14 20 C 6 14, 2 8, 0 0 Z"
-    petals = [  # (rotation, scale, gradient) — εξωτερικά σκούρα, εσωτερικά φωτεινά
-        (-160, 1.0, "pet2"), (-85, .96, "pet2"), (-15, 1.04, "pet2"), (60, .98, "pet2"), (130, 1.0, "pet2"),
-        (-120, .82, "pet"), (-45, .85, "pet"), (25, .8, "pet"), (100, .84, "pet"), (175, .8, "pet"),
-        (-70, .45, "pet"), (40, .42, "pet"), (150, .44, "pet"),
-    ]
-    body = [f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{DISC_BG}"/>', f'<g clip-path="url(#disc)">']
+    """Μεγάλα λευκά/μέντα πέταλα σε πράσινο φόντο, όπως στην κάρτα."""
     k = r / 57.5
+    defs = (f'<defs><clipPath id="disc"><circle cx="{cx}" cy="{cy}" r="{r}"/></clipPath>'
+            '<radialGradient id="bg" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#8cc29b"/><stop offset="1" stop-color="#3f7c53"/></radialGradient>'
+            '<radialGradient id="pet" cx="40%" cy="35%" r="85%"><stop offset="0" stop-color="#ffffff"/>'
+            '<stop offset=".5" stop-color="#eef6ef"/><stop offset="1" stop-color="#b9d8c0"/></radialGradient>'
+            '<radialGradient id="pet2" cx="45%" cy="40%" r="80%"><stop offset="0" stop-color="#f4faf5"/>'
+            '<stop offset="1" stop-color="#a5cbb0"/></radialGradient>'
+            '<filter id="soft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation=".7"/></filter></defs>')
+    petal = "M0 0 C 4 -22, 30 -36, 52 -22 C 64 -14, 64 6, 54 18 C 44 30, 24 30, 12 22 C 5 16, 1 8, 0 0 Z"
+    petals = [(-150, .98, "pet2"), (-70, 1.02, "pet2"), (5, .96, "pet2"), (75, 1.0, "pet2"), (150, .95, "pet2"),
+              (-110, .72, "pet"), (-30, .75, "pet"), (40, .7, "pet"), (115, .74, "pet"), (190, .7, "pet")]
+    body = [f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="url(#bg)"/>', '<g clip-path="url(#disc)"><g filter="url(#soft)">']
     for rot, sc, g in petals:
         body.append(f'<path transform="translate({cx} {cy}) rotate({rot}) scale({sc*k:.3f})" d="{petal}" '
-                    f'fill="url(#{g})" stroke="#6f786b" stroke-width="{.9/(sc*k):.2f}" opacity=".96"/>')
-    body.append('</g>')
+                    f'fill="url(#{g})" stroke="#c4dfca" stroke-width="{.5/(sc*k):.2f}" opacity=".95"/>')
+    body.append('</g></g>')
     return defs + "".join(body)
 
 
-SCRIPT_N = ("M 56 126 C 64 134, 73 127, 76 114 C 79 98, 80 86, 86 76 C 90 70, 94 73, 95 81 "
-            "L 101 117 C 103 125, 108 124, 110 116 L 117 80 C 118 72, 115 68, 111 71")
-SCRIPT_S = ("M 113 79 C 124 72, 134 78, 145 71 C 137 83, 128 92, 120 100 C 135 97, 147 108, 142 122 "
-            "C 137 136, 116 140, 98 136 C 84 133, 72 135, 63 141")
+# Καλλιγραφικό ΝΣ (κεντραρισμένο περίπου στο 100,100). Η αντίθεση χοντρού/λεπτού βγαίνει με «πένα» (στοίβα μετατοπισμένων πινελιών).
+SCRIPT = [
+    # Ν: αριστερή κεραία από κάτω αριστερά προς τα πάνω
+    "M 56 130 C 63 131, 70 124, 74 112 C 78 99, 80 88, 84 78 C 86 72, 91 71, 93 77",
+    # διαγώνιος προς τα κάτω
+    "M 93 77 C 95 92, 97 110, 100 126",
+    # δεξιά κεραία προς τα πάνω, γυρίζει στο Σ
+    "M 100 126 C 104 108, 108 90, 113 76 C 115 71, 119 69, 123 70",
+    # Σ: πάνω οριζόντια μακριά πινελιά
+    "M 116 74 C 128 71, 139 70, 149 65",
+    # Σ: διαγώνιος προς τα κάτω αριστερά
+    "M 149 65 C 138 78, 125 92, 113 104",
+    # Σ: κάτω καμπύλη (κοιλιά) και ουρά προς τα αριστερά
+    "M 113 104 C 128 100, 144 108, 141 122 C 138 136, 118 140, 100 135 C 90 132, 84 127, 89 122",
+]
 
 def script_monogram(scale=1.0, cx=100, cy=100):
-    t = f'transform="translate({cx} {cy}) scale({scale}) skewX(-8) translate(-100 -104)"'
-    out = ""
-    for w, col in ((7, "#2b3029"), (3.4, "#ffffff")):
-        out += (f'<g {t} fill="none" stroke="{col}" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round">'
-                f'<path d="{SCRIPT_N}"/><path d="{SCRIPT_S}"/></g>')
-    return out
+    t = f'transform="translate({cx} {cy}) scale({scale}) translate(-104 -100)"'
+    nib = [(i / 8 * 2.4, -i / 8 * 1.6) for i in range(9)]  # πένα 34°
+    def stack(col, w):
+        return "".join(f'<g transform="translate({dx:.2f} {dy:.2f})"><path d="{" ".join(SCRIPT)}"/></g>' for dx, dy in nib)
+    out = f'<g {t} fill="none" stroke-linecap="round" stroke-linejoin="round">'
+    out += f'<g stroke="#3c7650" stroke-width="3.1">{stack("", 0)}</g>'
+    out += f'<g stroke="#ffffff" stroke-width="1.9">{stack("", 0)}</g>'
+    return out + '</g>'
 
 
 def monogram(cx, cy, size):
@@ -143,16 +156,17 @@ def monogram(cx, cy, size):
 def emblem(with_text=True):
     cx = cy = 100
     parts = [
-        f'<circle cx="{cx}" cy="{cy}" r="98" fill="{PURPLE}"/>',
-        f'<circle cx="{cx}" cy="{cy}" r="93" fill="none" stroke="{WHITE}" stroke-width="1.6" opacity=".9"/>',
-        f'<circle cx="{cx}" cy="{cy}" r="61" fill="{WHITE}"/>',
-        flower(cx, cy, 57.5),
-        script_monogram(1.0, cx, cy),
+        f'<circle cx="{cx}" cy="{cy}" r="99" fill="{PURPLE_D}"/>',
+        f'<circle cx="{cx}" cy="{cy}" r="97.6" fill="{WHITE}"/>',
+        f'<circle cx="{cx}" cy="{cy}" r="95.4" fill="{PURPLE}"/>',
+        f'<circle cx="{cx}" cy="{cy}" r="59" fill="{WHITE}"/>',
+        flower(cx, cy, 54),
+        script_monogram(.94, cx, cy),
     ]
     if with_text:
-        parts.append(f'<path d="{arc_text(REGULAR, "Γραφείο Τελετών", 16.5, cx, cy, 70.5, top=True, track=0.6)}" fill="#e6dbf3"/>')
-        parts.append(f'<path d="{arc_text(ITALIC, "Σοφογιάννης", 16.5, cx, cy, 82, top=False, track=0.3)}" fill="#e6dbf3"/>')
-        parts.append(f'<circle cx="{cx-78}" cy="{cy}" r="2.2" fill="{WHITE}"/><circle cx="{cx+78}" cy="{cy}" r="2.2" fill="{WHITE}"/>')
+        parts.append(f'<path d="{arc_text(BOLD, "Γραφείο Τελετών", 17.5, cx, cy, 70.5, top=True, track=0.5)}" fill="#efe6f8" stroke="#3d2160" stroke-width=".7" paint-order="stroke"/>')
+        parts.append(f'<path d="{arc_text(ITALIC, "Σοφογιάννης", 18.5, cx, cy, 83, top=False, track=0.3)}" fill="#efe6f8" stroke="#3d2160" stroke-width=".7" paint-order="stroke"/>')
+        parts.append(f'<circle cx="{cx-78.5}" cy="{cy}" r="2" fill="#efe6f8"/><circle cx="{cx+78.5}" cy="{cy}" r="2" fill="#efe6f8"/>')
     return parts
 
 
