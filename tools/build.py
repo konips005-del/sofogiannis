@@ -202,7 +202,7 @@ def graph(path, title, desc, crumbs, extra=None):
     nodes += extra or []
     return json.dumps({"@context": "https://schema.org", "@graph": nodes}, ensure_ascii=False, indent=2)
 
-NAV = [("Αρχική", "/"), ("Το Γραφείο", "/to-grafeio/"), ("Υπηρεσίες", "/ypiresies/"), ("Τι κάνω τώρα", "/ti-kano-tora/"), ("Επικοινωνία", "/epikoinonia/")]
+NAV = [("Αρχική", "/"), ("Το Γραφείο", "/to-grafeio/"), ("Υπηρεσίες", "/ypiresies/"), ("Εκθεσιακός Χώρος", "/ekthesiakos-xoros/"), ("Τι κάνω τώρα", "/ti-kano-tora/"), ("Επικοινωνία", "/epikoinonia/")]
 
 def head(path, title, desc, ld):
     return f"""<!DOCTYPE html>
@@ -322,6 +322,7 @@ def footer():
         <li><a href="/">Αρχική</a></li>
         <li><a href="/to-grafeio/">Το Γραφείο</a></li>
         <li><a href="/ypiresies/">Υπηρεσίες</a></li>
+        <li><a href="/ekthesiakos-xoros/">Εκθεσιακός Χώρος</a></li>
         <li><a href="/ti-kano-tora/">Τι κάνω τώρα</a></li>
         <li><a href="/epikoinonia/">Επικοινωνία</a></li>
       </ul>
@@ -634,6 +635,36 @@ build_page("/to-grafeio/", "Το Γραφείο · Γραφείο Τελετών
            [{"@type": "AboutPage", "url": url("/to-grafeio/"), "mainEntity": {"@id": url("/#funeralhome")}}])
 PAGES.append(("/to-grafeio/", "0.8"))
 
+# ================================================================= ΕΚΘΕΣΙΑΚΟΣ ΧΩΡΟΣ
+# Φέρετρα ns-01 … ns-25 (από το site Τογρίδη ΛΤ6–ΛΤ30). Σειρά = αρίθμηση ΝΣ1, ΝΣ2, …
+COFFINS = sorted(f for f in os.listdir(os.path.join(ROOT, "images", "feretra")) if f.startswith("ns-"))
+def coffin_card(n, f):
+    v = hashlib.md5(open(os.path.join(ROOT, "images", "feretra", f), "rb").read()).hexdigest()[:8]
+    return f"""<figure class="coffin">
+        <div class="coffin-img"><img src="/images/feretra/{f}?v={v}" alt="Φέρετρο ΝΣ{n}" width="800" height="600" loading="lazy" decoding="async"></div>
+        <figcaption><span>Φέρετρο</span><span class="ns-code"><img src="/images/logo-emblem.svg?v={LOGO_V}" alt="" width="26" height="26">ΝΣ{n}</span></figcaption>
+      </figure>"""
+showroom_body = page_hero([("Αρχική", "/"), ("Εκθεσιακός Χώρος", "/ekthesiakos-xoros/")],
+    "Εκθεσιακός χώρος",
+    "Δείτε τα φέρετρα που διαθέτουμε. Μπορείτε να τα δείτε και από κοντά στο γραφείο μας, στη Φορμίωνος 233 στον Βύρωνα, και θα σας βοηθήσουμε να επιλέξετε με ηρεμία.") + f"""
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      {sec_title("Φέρετρα")}
+      <p class="lead">Για κάθε μοντέλο ρωτήστε μας με τον κωδικό του (π.χ. ΝΣ1) για διαθεσιμότητα και τιμή.</p>
+    </div>
+    <div class="coffins">{"".join(coffin_card(n, f) for n, f in enumerate(COFFINS, 1))}
+    </div>
+  </div>
+</section>
+{cta_band("Θέλετε να δείτε κάποιο μοντέλο από κοντά;", "Καλέστε μας με τον κωδικό του φερέτρου ή περάστε από το γραφείο μας στον Βύρωνα. Θα σας εξηγήσουμε όλες τις επιλογές με ηρεμία.")}
+"""
+build_page("/ekthesiakos-xoros/", "Εκθεσιακός Χώρος · Φέρετρα · Γραφείο Τελετών Σοφογιάννης, Βύρωνας",
+           "Δείτε τα φέρετρα του Γραφείου Τελετών Σοφογιάννης στον Βύρωνα. Μεγάλη γκάμα σε ξύλο και αποχρώσεις, με σαφή ενημέρωση για διαθεσιμότητα και τιμή. Τηλ. 210 7600 900.",
+           [("Αρχική", "/"), ("Εκθεσιακός Χώρος", "/ekthesiakos-xoros/")], showroom_body,
+           [{"@type": "CollectionPage", "url": url("/ekthesiakos-xoros/"), "about": {"@id": url("/#funeralhome")}}])
+PAGES.append(("/ekthesiakos-xoros/", "0.8"))
+
 # ================================================================= SERVICES INDEX
 svc_index_body = page_hero([("Αρχική", "/"), ("Υπηρεσίες", "/ypiresies/")],
     "Υπηρεσίες",
@@ -707,7 +738,7 @@ SVC_CONTENT["kideies"] = {
     ("car", "Παραλαβή σορού", "Από οικία, νοσοκομείο ή κλινική, οποιαδήποτε ώρα, με σεβασμό και διακριτικότητα."),
     ("cross", "Ναός & ιερέας", "Συνεννόηση με την ενορία για την ώρα της εξοδίου ακολουθίας, τους ιερείς και τους ψάλτες."),
     ("map", "Κοιμητήριο", "Επικοινωνία με το κοιμητήριο, κράτηση ή χρήση οικογενειακού τάφου, οργάνωση ταφής."),
-    ("flower", "Φέρετρο & στολισμός", "Μεγάλη γκάμα φερέτρων και στολισμός ναού και φερέτρου με λουλούδια της επιλογής σας."),
+    ("flower", "Φέρετρο & στολισμός", "Μεγάλη γκάμα φερέτρων (δείτε τον <a href='/ekthesiakos-xoros/'>εκθεσιακό χώρο</a>) και στολισμός ναού και φερέτρου με λουλούδια της επιλογής σας."),
     ("news", "Αγγελτήρια", "Εκτύπωση και τοποθέτηση κηδειόχαρτων, καθώς και καταχώριση αγγελίας σε εφημερίδα."),
     ("coffee", "Καφές παρηγοριάς", "Οργάνωση του καφέ της παρηγοριάς μετά την τελετή, σε χώρο κοντά στον ναό."),
 ])}

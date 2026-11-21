@@ -35,7 +35,7 @@
   // Ομαλή εμφάνιση κατά το scroll
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var SEL = '.trust-item,.sec-title,.section-head > .lead,.service-card,.quote-card,.portrait,.split > div > p,.check-list li,.step,' +
-    '.areas,.map,.faq details,.cta-band,.value,.feature,.contact-card,.side-card,.bizcard,.office,.timeline li,.prose > h2,.prose > p,.prose .photo,.note';
+    '.areas,.map,.faq details,.coffin,.cta-band,.value,.feature,.contact-card,.side-card,.bizcard,.office,.timeline li,.prose > h2,.prose > p,.prose .photo,.note';
   var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
   if (!reduce && 'IntersectionObserver' in window) {
     els.forEach(function (el) {
