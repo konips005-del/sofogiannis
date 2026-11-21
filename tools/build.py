@@ -476,10 +476,10 @@ HOME_FAQ = [
 ]
 
 home_body = f"""<section class="hero">
+  <div class="hero-bg"><img src="/images/prosopsi.jpg" alt="Η πρόσοψη του Γραφείου Τελετών Σοφογιάννης, Φορμίωνος 233, Βύρωνας" width="1200" height="1600" fetchpriority="high"></div>
   <div class="wrap">
     <div class="bevel">
       <div class="panel hero-panel">
-        <img class="panel-art" src="/images/monastery.svg" alt="" aria-hidden="true">
         <div class="hero-text">
           <h1><span class="h1-script">Σοφογιάννης</span><span class="h1-sub">Γραφείο Τελετών στον Βύρωνα</span></h1>
           <p class="lead">Οργανώνουμε κηδείες, αποτεφρώσεις και μνημόσυνα με σεβασμό και διακριτικότητα, και αναλαμβάνουμε όλα τα διαδικαστικά, ώστε εσείς να σταθείτε δίπλα στους δικούς σας.</p>
@@ -494,7 +494,7 @@ home_body = f"""<section class="hero">
           </div>
         </div>
         <div class="hero-seal">
-          <img src="/images/logo-emblem.svg?v={LOGO_V}" alt="Το έμβλημα του Γραφείου Τελετών Σοφογιάννης" width="340" height="340" fetchpriority="high">
+          <img src="/images/logo-emblem.svg?v={LOGO_V}" alt="Το έμβλημα του Γραφείου Τελετών Σοφογιάννης" width="150" height="150">
         </div>
       </div>
     </div>
