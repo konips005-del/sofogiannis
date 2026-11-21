@@ -11,7 +11,7 @@ import re
 from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = "https://sofogiannis.vercel.app"  # άλλαξέ το όταν μπει domain
+SITE = "https://teletessofogiannisvyronas.gr"
 TODAY = date.today().isoformat()
 
 BIZ = {

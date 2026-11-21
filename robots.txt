@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sofogiannis.vercel.app/sitemap.xml
+Sitemap: https://teletessofogiannisvyronas.gr/sitemap.xml
