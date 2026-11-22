@@ -93,6 +93,64 @@
     drawDots(); update();
   });
 
+  // Μουσική υπόκρουση (YouTube, κατόπιν επιθυμίας του πελάτη). Οι browsers δεν επιτρέπουν ήχο πριν
+  // από την πρώτη αλληλεπίδραση, οπότε αν μπλοκαριστεί ξεκινά με το πρώτο κλικ/άγγιγμα/πλήκτρο.
+  var VID = '8w_E3fyzPnw';
+  var store = function (k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } };
+  var sstore = function (k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } };
+  var startMusic = function () {
+    var box = document.createElement('div');
+    box.className = 'music';
+    box.innerHTML = '<div class="music-player"><div id="yt-music"></div></div>' +
+      '<button type="button" class="music-btn" aria-pressed="false" aria-label="Μουσική">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="2"/></svg>' +
+      '<span class="music-label">Μουσική</span><span class="music-eq" aria-hidden="true"><i></i><i></i><i></i></span></button>';
+    document.body.appendChild(box);
+    var btn = box.querySelector('.music-btn');
+    var player, playing = false, wantOff = store('music') === 'off';
+    var setUI = function () {
+      btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+      btn.setAttribute('aria-label', playing ? 'Παύση μουσικής' : 'Αναπαραγωγή μουσικής');
+      box.classList.toggle('on', playing);
+    };
+    var gesture = function () {
+      ['pointerdown', 'keydown', 'touchstart'].forEach(function (ev) { document.removeEventListener(ev, gesture, true); });
+      if (player && !playing && store('music') !== 'off') player.playVideo();
+    };
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (!player) return;
+      if (playing) { player.pauseVideo(); store('music', 'off'); }
+      else { store('music', 'on'); player.playVideo(); }
+    });
+    window.onYouTubeIframeAPIReady = function () {
+      player = new YT.Player('yt-music', {
+        width: 200, height: 113, videoId: VID,
+        playerVars: { autoplay: wantOff ? 0 : 1, playsinline: 1, rel: 0, modestbranding: 1, start: Math.floor(+sstore('music-t') || 0) },
+        events: {
+          onReady: function () {
+            if (wantOff) return;
+            player.setVolume(60); player.playVideo();
+            setTimeout(function () {
+              if (!playing) ['pointerdown', 'keydown', 'touchstart'].forEach(function (ev) { document.addEventListener(ev, gesture, true); });
+            }, 1200);
+          },
+          onStateChange: function (e) {
+            playing = e.data === 1;
+            if (e.data === 0) { sstore('music-t', 0); player.seekTo(0); player.playVideo(); } // επανάληψη
+            setUI();
+          }
+        }
+      });
+      setInterval(function () { if (playing && player.getCurrentTime) sstore('music-t', player.getCurrentTime()); }, 2000);
+    };
+    window.addEventListener('pagehide', function () { if (player && player.getCurrentTime) sstore('music-t', player.getCurrentTime()); });
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  };
+  if (document.readyState === 'complete') startMusic(); else window.addEventListener('load', startMusic);
+
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 })();
