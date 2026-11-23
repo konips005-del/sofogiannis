@@ -492,7 +492,7 @@ home_body = f"""<section class="hero">
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="tel:{BIZ['phone_tel']}">{I['phone']}Κλήση {BIZ['phone']}</a>
-            <a class="btn btn-purple" href="tel:{BIZ['mobile_tel']}">{I['mobile']}24/7 · {BIZ['mobile']}</a>
+            <a class="btn btn-purple" href="tel:{BIZ['mobile_tel']}">{I['mobile']}{BIZ['mobile']}</a>
             <a class="btn btn-link" href="/ti-kano-tora/">Τι κάνω τώρα; {I['arrow']}</a>
           </div>
         </div>
