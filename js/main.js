@@ -95,7 +95,7 @@
 
   // Μουσική υπόκρουση (YouTube, κατόπιν επιθυμίας του πελάτη). Οι browsers δεν επιτρέπουν ήχο πριν
   // από την πρώτη αλληλεπίδραση, οπότε αν μπλοκαριστεί ξεκινά με το πρώτο κλικ/άγγιγμα/πλήκτρο.
-  var VID = '8w_E3fyzPnw';
+  var VID = 'apHmsOed7m8'; // Σταμάτης Σπανουδάκης — Κύματα
   var store = function (k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } };
   var sstore = function (k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } };
   var startMusic = function () {
@@ -126,7 +126,7 @@
     window.onYouTubeIframeAPIReady = function () {
       player = new YT.Player('yt-music', {
         width: 200, height: 113, videoId: VID,
-        playerVars: { autoplay: wantOff ? 0 : 1, playsinline: 1, rel: 0, modestbranding: 1, start: Math.floor(+sstore('music-t') || 0) },
+        playerVars: { autoplay: wantOff ? 0 : 1, playsinline: 1, rel: 0, modestbranding: 1, start: Math.floor(+sstore('music-t-' + VID) || 0) },
         events: {
           onReady: function () {
             if (wantOff) return;
@@ -137,14 +137,14 @@
           },
           onStateChange: function (e) {
             playing = e.data === 1;
-            if (e.data === 0) { sstore('music-t', 0); player.seekTo(0); player.playVideo(); } // επανάληψη
+            if (e.data === 0) { sstore('music-t-' + VID, 0); player.seekTo(0); player.playVideo(); } // επανάληψη
             setUI();
           }
         }
       });
-      setInterval(function () { if (playing && player.getCurrentTime) sstore('music-t', player.getCurrentTime()); }, 2000);
+      setInterval(function () { if (playing && player.getCurrentTime) sstore('music-t-' + VID, player.getCurrentTime()); }, 2000);
     };
-    window.addEventListener('pagehide', function () { if (player && player.getCurrentTime) sstore('music-t', player.getCurrentTime()); });
+    window.addEventListener('pagehide', function () { if (player && player.getCurrentTime) sstore('music-t-' + VID, player.getCurrentTime()); });
     var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.head.appendChild(tag);
