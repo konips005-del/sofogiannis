@@ -154,6 +154,7 @@ p { margin: 0 0 1.1em; }
 .hero-rows > * + * { border-top: 1px solid rgba(59, 140, 85, .25); }
 .hero-rows svg { width: 20px; height: 20px; color: var(--purple); flex: none; }
 .row-owner span { font-family: var(--serif); font-size: 21px; font-weight: 700; color: var(--green-d); }
+.row-addr span { color: var(--green-d); }
 .row-addr:hover span { text-decoration: underline; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .hero-seal { display: grid; place-items: center; }
