@@ -477,6 +477,35 @@ HOME_FAQ = [
      "Ναι. Διεκπεραιώνουμε τα έγγραφα που απαιτούνται για την τελετή, όπως η ληξιαρχική πράξη θανάτου και η άδεια ταφής, και σας καθοδηγούμε για όσα ακολουθούν. Δείτε τις <a href=\"/ypiresies/diadikasies/\">γραφειοκρατικές διαδικασίες</a>."),
 ]
 
+GOOGLE_REVIEWS_URL = "https://www.google.com/maps?cid=13828754438006141093"
+REVIEWS = [  # από Google Maps (5★, 10 κριτικές) — 23/11/2026
+    ("Σμαράγδα Μ.", "Εμπιστευτήκαμε το γραφείο του κ’ Ν.Σοφογιάννη για την τελετή του τελευταίου αντίο και για το μνημόσυνο των σαράντα ημερών της μητέρας μας. Τις τελετές του διέπουν η φροντίδα στην λεπτομέρεια, η διακριτικότητα και ο επαγγελματισμός. Το προσωπικό είναι εξαιρετικά έμπειρο και ο ίδιος ο κος Σοφογιάννης παρών σε κάθε τελετή με μοναδική του μέριμνα να τελειοποιήσει κάθε διαδικασία, να οργανώσει ως προς το εθιμοτυπικό την τελετή και να σταθεί δίπλα στην μεγάλη απώλεια που βιώσαμε με τον ουσιαστικότερο τρόπο."),
+    ("Γιώργος Μ.", "Ο κύριος Σοφογιάννης στη δύσκολη στιγμή μου στάθηκε δίπλα μου με απέραντο σεβασμό, επαγγελματισμό και ήθος στην απώλεια του δικού μου ανθρώπου. Τον συνιστώ ανεπιφύλακτα."),
+    ("Βάνα Χ.", "Εξαιρετικός επαγγελματίας! Παρευρίσκεται και συμπαραστέκεται στον πόνο με αξιοπρέπεια. Κάνει πολλά περισσότερα από μια απλή τελετή!"),
+    ("Ιωάννα Μ.", "Ήθος, αξιοπρέπεια και σεβασμός, σας ευχαριστούμε πολύ!"),
+    ("Ράνια Π.", "Θα σχολιάσω για το σιτάρι που έφαγα σε ένα μνημόσυνο από το συγκεκριμένο γραφείο τελετών: πραγματικά δεν έχω ξαναφάει πιο ωραίο σιτάρι στη ζωή μου. Μπράβο σας, εξαιρετικό!"),
+    ("Δημήτρης Μ.", "Ένα μεγάλο ευχαριστώ για όλα."),
+]
+STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>'
+STARS = f'<span class="stars" aria-label="5 στα 5 αστέρια">{STAR * 5}</span>'
+
+def reviews_section(cls="section"):
+    cards = "\n".join(
+        f'      <figure class="review"><div class="review-top">{STARS}<span class="g">Google</span></div><blockquote>«{t}»</blockquote><figcaption>{n}</figcaption></figure>'
+        for n, t in REVIEWS)
+    return f"""<section class="{cls} reviews" aria-label="Κριτικές">
+  <div class="wrap">
+    <div class="section-head">
+      {sec_title("Τι λένε οι οικογένειες")}
+      <a class="rating-badge" href="{GOOGLE_REVIEWS_URL}" target="_blank" rel="noopener"><strong>5,0</strong>{STARS}<span>10 κριτικές στο Google</span></a>
+    </div>
+    <div class="review-grid">
+{cards}
+    </div>
+    <p class="reviews-more"><a class="btn btn-ghost" href="{GOOGLE_REVIEWS_URL}" target="_blank" rel="noopener">Όλες οι κριτικές στο Google {I['arrow']}</a></p>
+  </div>
+</section>"""
+
 home_body = f"""<section class="hero">
   <div class="hero-bg"><img src="/images/prosopsi-3.jpg" alt="" width="900" height="1200" fetchpriority="high"></div>
   <div class="wrap hero-grid">
@@ -526,7 +555,7 @@ home_body = f"""<section class="hero">
 <section class="section alt">
   <div class="wrap split">
     <figure class="portrait">
-      <div class="portrait-frame"><img src="/images/nikolaos-sofogiannis.jpg" alt="Ο Νικόλαος Ι. Σοφογιάννης, υπεύθυνος του Γραφείου Τελετών Σοφογιάννης στον Βύρωνα" width="640" height="643" loading="lazy" decoding="async"></div>
+      <div class="portrait-frame pf-green"><img src="/images/nikolaos-sofogiannis.jpg" alt="Ο Νικόλαος Ι. Σοφογιάννης, υπεύθυνος του Γραφείου Τελετών Σοφογιάννης στον Βύρωνα" width="640" height="643" loading="lazy" decoding="async"></div>
       <figcaption><img src="/images/logo-emblem.webp?v={LOGO_V}" alt="" width="56" height="56"><span><strong>{BIZ['owner']}</strong><small>Υπεύθυνος γραφείου</small></span></figcaption>
     </figure>
     <div>
@@ -538,6 +567,8 @@ home_body = f"""<section class="hero">
     </div>
   </div>
 </section>
+
+{reviews_section()}
 
 <section class="section dark">
   <div class="wrap">

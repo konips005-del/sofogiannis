@@ -481,6 +481,7 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
 .portrait { margin: 0; position: relative; max-width: 520px; justify-self: center; width: 100%; }
 .portrait-frame { background: var(--green); padding: clamp(12px, 1.6vw, 18px); border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(10, 30, 15, .6); }
 .portrait-frame img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 30%; border: 10px solid; border-color: #8a64bd #3f2166 #331a55 #7853ab; }
+.pf-green img { border-color: #5aa872 #1d5532 #15402a #479a60; } /* πράσινη κορνίζα (φωτό ιδιοκτήτη, αρχική) */
 .portrait figcaption {
   position: relative; display: flex; align-items: center; gap: 14px; margin: -34px 24px 0; padding: 14px 18px; background: #fff;
   border-radius: 12px; box-shadow: var(--shadow); border-left: 4px solid var(--purple);
@@ -606,3 +607,18 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
 @keyframes eq { 0%, 100% { height: 4px; } 50% { height: 14px; } }
 @media (prefers-reduced-motion: reduce) { .music-eq i { animation: none; height: 10px; } }
 @media (max-width: 640px) { .music { bottom: 86px; left: 12px; } .music-label { display: none; } .music-btn { padding: 0 13px; } .music-player { width: 160px; height: 90px; } }
+
+/* ---------------------------------------------------------------- κριτικές Google */
+.stars { display: inline-flex; gap: 2px; color: #e0a526; }
+.stars svg { width: 17px; height: 17px; }
+.rating-badge { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 18px; border: 1px solid var(--line); border-radius: 14px; background: #fff; box-shadow: var(--shadow); text-decoration: none; color: var(--ink); }
+.rating-badge strong { font-family: var(--serif); font-size: 28px; line-height: 1; color: var(--green-d); }
+.rating-badge span:last-child { font-size: 14px; font-weight: 600; color: var(--green-d); }
+.rating-badge:hover span:last-child { text-decoration: underline; }
+.review-grid { columns: 3 300px; column-gap: 22px; }
+.review { break-inside: avoid; margin: 0 0 22px; background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--green); border-radius: 14px; padding: 22px 24px 20px; box-shadow: var(--shadow); }
+.review-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.review-top .g { font-size: 12px; font-weight: 700; letter-spacing: .5px; color: #7a857c; }
+.review blockquote { margin: 0 0 14px; font-size: 16px; line-height: 1.65; color: var(--ink); }
+.review figcaption { font-family: var(--serif); font-weight: 700; font-size: 17px; color: var(--green-d); }
+.reviews-more { margin: 14px 0 0; text-align: center; }
