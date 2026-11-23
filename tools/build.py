@@ -158,7 +158,7 @@ def business_ld():
         "alternateName": ["Γραφείο Τελετών Σοφογιάννης", "Σοφογιάννης Γραφείο Τελετών", "Γραφείο Τελετών Βύρωνας Σοφογιάννης", "Sofogiannis Funeral Home"],
         "description": "Γραφείο τελετών στον Βύρωνα από το 2003, Φορμίωνος 233. Τελετές, αποτεφρώσεις, μνημόσυνα, ανθοστολισμός, μεταφορά σορού και διεκπεραίωση γραφειοκρατικών διαδικασιών, 24 ώρες το 24ωρο.",
         "url": url("/"),
-        "image": [url("/og-image.png"), url("/images/grafeio-vyronas.jpg"), url("/images/nikolaos-sofogiannis.jpg")],
+        "image": [url("/og-image.png"), url("/images/prosopsi-3.jpg"), url("/images/nikolaos-sofogiannis.jpg")],
         "logo": url("/logo.png"),
         "telephone": [BIZ["phone_tel"], BIZ["phone2_tel"], BIZ["mobile_tel"]],
         "faxNumber": "+302107600908",
@@ -478,9 +478,9 @@ HOME_FAQ = [
 ]
 
 home_body = f"""<section class="hero">
-  <div class="hero-bg"><img src="/images/prosopsi-2.jpg" alt="" width="765" height="1020" fetchpriority="high"></div>
+  <div class="hero-bg"><img src="/images/prosopsi-3.jpg" alt="" width="900" height="1200" fetchpriority="high"></div>
   <div class="wrap hero-grid">
-    <figure class="hero-shot"><img src="/images/prosopsi-2.jpg" alt="Η πρόσοψη του Γραφείου Τελετών Σοφογιάννης, Φορμίωνος 233, Βύρωνας" width="765" height="1020"></figure>
+    <figure class="hero-shot"><img src="/images/prosopsi-3.jpg" alt="Η πρόσοψη του Γραφείου Τελετών Σοφογιάννης, Φορμίωνος 233, Βύρωνας" width="900" height="1200"></figure>
     <div class="bevel">
       <div class="panel hero-panel">
         <div class="hero-text">
@@ -588,7 +588,7 @@ about_body = page_hero([("Αρχική", "/"), ("Το Γραφείο", "/to-graf
 <section class="section">
   <div class="wrap split">
     <figure class="portrait">
-      <div class="portrait-frame"><img src="/images/grafeio-vyronas.jpg" alt="Η πρόσοψη του Γραφείου Τελετών Σοφογιάννης στη Φορμίωνος 233, Βύρωνας" width="977" height="1200" loading="lazy" decoding="async" style="object-position:center 100%"></div>
+      <div class="portrait-frame"><img src="/images/prosopsi-3.jpg" alt="Η πρόσοψη του Γραφείου Τελετών Σοφογιάννης στη Φορμίωνος 233, Βύρωνας" width="900" height="1200" loading="lazy" decoding="async" style="object-position:center 60%"></div>
       <figcaption><img src="/images/logo-emblem.webp?v={LOGO_V}" alt="" width="56" height="56"><span><strong>Το γραφείο μας</strong><small>{BIZ['street']} · {BIZ['city']}</small></span></figcaption>
     </figure>
     <div>
