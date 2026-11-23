@@ -558,7 +558,6 @@ home_body = f"""<section class="hero">
     <div>
       {sec_title("Περιοχές που εξυπηρετούμε")}
       <p class="lead">Το γραφείο μας βρίσκεται στη Φορμίωνος 233 στον Βύρωνα και εξυπηρετούμε σε όλη την Αττική και αναλαμβάνουμε τελετές σε όλη την Ελλάδα και μεταφορές από το εξωτερικό.</p>
-      <div class="areas"><span class="main">{AREAS_MAIN}</span>{''.join(f'<span>{a}</span>' for a in AREAS)}</div>
     </div>
     <div class="map">
       <iframe src="{MAPS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Χάρτης: {BIZ['name']}"></iframe>
