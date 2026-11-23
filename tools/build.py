@@ -740,12 +740,12 @@ def photo(src, alt, w, h, pos="center"):
     return (f'<figure class="photo"><img src="/images/{src}" alt="{esc(alt)}" width="{w}" height="{h}" '
             f'loading="lazy" decoding="async" style="object-position:{pos}"></figure>')
 
-def carousel(items, label):
-    """Slider φωτογραφιών με βελάκια (scroll-snap, χωρίς βιβλιοθήκες)."""
+def carousel(items, label, wide=False):
+    """Slider φωτογραφιών με βελάκια (scroll-snap, χωρίς βιβλιοθήκες). wide=True: μία οριζόντια φωτογραφία τη φορά."""
     slides = "".join(
         f'<figure class="slide"><img src="/images/{src}?v=2" alt="{esc(alt)}" loading="lazy" decoding="async"></figure>'
         for src, alt in items)
-    return f"""<div class="carousel" role="region" aria-roledescription="carousel" aria-label="{esc(label)}">
+    return f"""<div class="carousel{' car-wide' if wide else ''}" role="region" aria-roledescription="carousel" aria-label="{esc(label)}">
   <div class="car-track" tabindex="0">{slides}</div>
   <button class="car-btn prev" type="button" aria-label="Προηγούμενη φωτογραφία"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
   <button class="car-btn next" type="button" aria-label="Επόμενη φωτογραφία"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
@@ -776,6 +776,7 @@ SVC_CONTENT["kideies"] = {
     ("news", "Αγγελτήρια", "Εκτύπωση και τοποθέτηση αγγελτηρίων, καθώς και καταχώριση αγγελίας σε εφημερίδα."),
     ("coffee", "Καφές παρηγοριάς", "Οργάνωση του καφέ της παρηγοριάς μετά την τελετή, σε χώρο κοντά στον ναό."),
 ])}
+{carousel([("teleti-1.jpg", "Στολισμός εισόδου ναού με στεφάνια, ανθοσυνθέσεις σε κηροπήγια και μπλε διάδρομο"), ("teleti-2.jpg", "Στολισμός εσωτερικού ναού με στεφάνια και ανθοσυνθέσεις από λευκά τριαντάφυλλα")], "Φωτογραφίες από τελετές που έχουμε οργανώσει", wide=True)}
 <h2>Πώς οργανώνεται μια τελετή</h2>
 <p>Αμέσως μόλις μας καλέσετε, ερχόμαστε σε επαφή μαζί σας και κανονίζουμε την παραλαβή. Στη συνέχεια συναντιόμαστε, στο γραφείο μας στον Βύρωνα ή όπου σας εξυπηρετεί, για να συζητήσουμε τις επιθυμίες σας: τον ναό, το κοιμητήριο, το φέρετρο, τον στολισμό και τα αγγελτήρια.</p>
 <p>Σας δίνουμε από την αρχή μια σαφή εικόνα του κόστους, χωρίς εκπλήξεις. Από εκεί και πέρα αναλαμβάνουμε εμείς τον συντονισμό με τον ναό, το κοιμητήριο, τους ανθοπώλες και τις υπηρεσίες, και διεκπεραιώνουμε τα <a href="/ypiresies/diadikasies/">απαραίτητα έγγραφα</a>.</p>
