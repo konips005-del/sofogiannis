@@ -617,7 +617,7 @@ about_body = page_hero([("Αρχική", "/"), ("Το Γραφείο", "/to-graf
   <div class="wrap split">
     <div>
       {sec_title("Γιατί να μας επιλέξετε")}
-      {check_list([f"{EXP_YEARS} χρόνια εμπειρίας στον χώρο, με δικό του γραφείο από το 2003", "Άμεση ανταπόκριση 24/7, ακόμη και σε αργίες", "Ένας υπεύθυνος για όλη τη διαδικασία, χωρίς μεσάζοντες", "Διαφάνεια στο κόστος και αναλυτική ενημέρωση", "Διεκπεραίωση όλων των εγγράφων της τελετής", "Αποτεφρώσεις και μεταφορές σορού σε Ελλάδα και εξωτερικό", "Γνώση των ναών και των κοιμητηρίων της περιοχής"])}
+      {check_list([f"{EXP_YEARS} χρόνια εμπειρίας στον χώρο, με δικό του γραφείο από το 2003", "Άμεση ανταπόκριση 24ωρο, ακόμη και σε αργίες", "Ένας υπεύθυνος για όλη τη διαδικασία, χωρίς μεσάζοντες", "Διαφάνεια στο κόστος και αναλυτική ενημέρωση", "Διεκπεραίωση όλων των εγγράφων της τελετής", "Αποτεφρώσεις και μεταφορές σορού σε Ελλάδα και εξωτερικό", "Γνώση των ναών και των κοιμητηρίων της περιοχής"])}
       <div class="hero-actions">
         <a class="btn btn-primary" href="/ypiresies/">Οι υπηρεσίες μας {I['arrow']}</a>
         <a class="btn btn-ghost" href="/epikoinonia/">Επικοινωνία</a>
@@ -685,7 +685,7 @@ svc_index_body = page_hero([("Αρχική", "/"), ("Υπηρεσίες", "/ypir
       <p class="lead">Κάθε τελετή προσαρμόζεται στις επιθυμίες της οικογένειας. Ενδεικτικά, μπορούμε να αναλάβουμε:</p>
     </div>
     <div>
-      {check_list(["Παραλαβή σορού 24/7", "Φέρετρα & στολισμός", "Στεφάνια & ανθοστολισμοί", "Αγγελτήρια & αγγελίες", "Συνεννόηση με ναό & ιερέα", "Κοιμητήρια & ταφή", "Νεκροφόρα & μεταφορές", "Καφές παρηγοριάς", "Κόλλυβα & μνημόσυνα", "Όλα τα έγγραφα"], two=True)}
+      {check_list(["Παραλαβή σορού 24ωρο", "Φέρετρα & στολισμός", "Στεφάνια & ανθοστολισμοί", "Αγγελτήρια & αγγελίες", "Συνεννόηση με ναό & ιερέα", "Κοιμητήρια & ταφή", "Νεκροφόρα & μεταφορές", "Καφές παρηγοριάς", "Κόλλυβα & μνημόσυνα", "Όλα τα έγγραφα"], two=True)}
     </div>
   </div>
 </section>
@@ -873,7 +873,7 @@ SVC_CONTENT["diadikasies"] = {
     ],
 }
 
-def side_call(title="Είμαστε εδώ 24/7", text="Καλέστε μας τώρα. Θα σας εξηγήσουμε με ηρεμία τι χρειάζεται να γίνει."):
+def side_call(title="Είμαστε εδώ 24ωρο", text="Καλέστε μας τώρα. Θα σας εξηγήσουμε με ηρεμία τι χρειάζεται να γίνει."):
     return f"""<div class="side-card dark">
         <h3>{title}</h3>
         <p>{text}</p>
@@ -1007,7 +1007,7 @@ contact_body = page_hero([("Αρχική", "/"), ("Επικοινωνία", "/ep
     <div class="contact-cards">
       <a class="contact-card" href="tel:{BIZ['phone_tel']}"><span class="ic">{I['phone']}</span><span><small>Τηλέφωνο γραφείου</small><strong>{BIZ['phone']}</strong></span></a>
       <a class="contact-card" href="tel:{BIZ['phone2_tel']}"><span class="ic">{I['phone']}</span><span><small>Δεύτερη γραμμή</small><strong>{BIZ['phone2']}</strong></span></a>
-      <a class="contact-card accent" href="tel:{BIZ['mobile_tel']}"><span class="ic">{I['mobile']}</span><span><small>Κινητό · 24/7</small><strong>{BIZ['mobile']}</strong></span></a>
+      <a class="contact-card accent" href="tel:{BIZ['mobile_tel']}"><span class="ic">{I['mobile']}</span><span><small>Κινητό · 24ωρο</small><strong>{BIZ['mobile']}</strong></span></a>
       <div class="contact-card"><span class="ic">{I['fax']}</span><span><small>Fax</small><strong>{BIZ['fax']}</strong></span></div>
       <a class="contact-card wide" href="mailto:{BIZ['email']}"><span class="ic">{I['mail']}</span><span><small>Email</small><strong>{BIZ['email']}</strong></span></a>
     </div>
