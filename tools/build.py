@@ -657,6 +657,8 @@ about_body = page_hero([("Αρχική", "/"), ("Το Γραφείο", "/to-graf
     {contact_card()}
   </div>
 </section>
+
+{reviews_section("section alt")}
 {cta_band()}
 """
 build_page("/to-grafeio/", "Το Γραφείο · Γραφείο Τελετών Σοφογιάννης, Βύρωνας",
