@@ -479,7 +479,7 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
 /* πορτρέτο υπευθύνου (αρχική) */
 .portrait { margin: 0; position: relative; max-width: 520px; justify-self: center; width: 100%; }
 .portrait-frame { background: var(--green); padding: clamp(12px, 1.6vw, 18px); border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(10, 30, 15, .6); }
-.portrait-frame img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 30%; border: 10px solid; border-color: #5aa872 #1d5532 #15402a #479a60; }
+.portrait-frame img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 30%; border: 10px solid; border-color: #8a64bd #3f2166 #331a55 #7853ab; }
 .portrait figcaption {
   position: relative; display: flex; align-items: center; gap: 14px; margin: -34px 24px 0; padding: 14px 18px; background: #fff;
   border-radius: 12px; box-shadow: var(--shadow); border-left: 4px solid var(--purple);
@@ -537,7 +537,7 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
 
 /* φωτογραφίες μέσα στο κείμενο υπηρεσιών */
 .prose .photo { margin: 30px 0; background: var(--green); padding: 10px; border-radius: 4px; box-shadow: 0 24px 50px -28px rgba(10, 30, 15, .6); }
-.prose .photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border: 6px solid; border-color: #5aa872 #1d5532 #15402a #479a60; }
+.prose .photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border: 6px solid; border-color: #8a64bd #3f2166 #331a55 #7853ab; }
 
 /* carousel φωτογραφιών */
 .carousel { position: relative; margin: 22px 0 34px; }
@@ -545,7 +545,7 @@ a.contact-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); b
 .car-track::-webkit-scrollbar { display: none; }
 .car-track:focus-visible { outline: 3px solid var(--purple-l); }
 .slide { flex: 0 0 calc((100% - 28px) / 3); margin: 0; scroll-snap-align: start; background: var(--green); padding: 6px; border-radius: 4px; }
-.slide img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; border: 4px solid; border-color: #5aa872 #1d5532 #15402a #479a60; }
+.slide img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; border: 4px solid; border-color: #8a64bd #3f2166 #331a55 #7853ab; }
 .car-btn {
   position: absolute; top: calc(50% - 18px); transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; border: 0; cursor: pointer;
   background: #fff; color: var(--purple); box-shadow: 0 8px 22px -8px rgba(10, 30, 15, .5); display: grid; place-items: center; transition: background .2s, color .2s, opacity .2s;
