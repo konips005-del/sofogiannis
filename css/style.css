@@ -313,7 +313,7 @@ p { margin: 0 0 1.1em; }
 
 /* business-card replica */
 .bizcard { background: var(--green); padding: clamp(14px, 2vw, 22px); border-radius: 6px; box-shadow: 0 30px 60px -30px rgba(10, 30, 15, .6); transform: rotate(-1.2deg); }
-.bizcard .bevel { border-width: 12px; box-shadow: none; }
+.bizcard .bevel { border-width: 12px; box-shadow: none; border-color: #8a64bd #3f2166 #331a55 #7853ab; } /* μωβ κορνίζα όπως στην κάρτα */
 .bizcard .panel { padding: 28px clamp(18px, 3vw, 34px) 24px; text-align: center; }
 .bc-name { font-family: var(--serif); font-style: italic; font-size: clamp(44px, 5vw, 58px); color: var(--green); line-height: 1; margin: 0; }
 .bc-sub { margin: 4px 0 14px; padding-left: 40%; font-family: var(--serif); color: var(--green); font-size: 16px; }
